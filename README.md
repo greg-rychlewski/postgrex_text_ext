@@ -58,6 +58,10 @@ Finally, you must define a custom type module, [as requred by Postgrex](https://
 Postgrex.Types.define(MyApp.PostgrexTypes, [PostgrexTextExt], [])
 ```
 
+## Examples
+
+[Please read through the short test suite](https://github.com/greg-rychlewski/postgrex_text_ext/blob/main/test/postgrex_text_ext_test.exs).
+
 ## Ecto
 
 Schemas can use the text protocol by simply defining a field's type as `:string`. However, this won't be enough to catch invalid input during casting. 
