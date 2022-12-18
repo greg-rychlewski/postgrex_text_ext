@@ -28,7 +28,7 @@ defmodule PSQL do
 end
 
 PSQL.cmd(["-c", "DROP DATABASE IF EXISTS postgrex_text_ext_test;"])
-PSQL.cmd(["-c", "DROP DATABASE IF EXISTS postgrex_text_ext_test;"])
+PSQL.cmd(["-c", "CREATE DATABASE postgrex_text_ext_test;"])
 
 Application.put_env(:postgrex_text_ext, :type_names, ["uuid", "regconfig"])
 Application.put_env(:postgrex_text_ext, :type_outputs, ["range_out"])
