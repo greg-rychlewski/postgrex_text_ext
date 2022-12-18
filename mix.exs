@@ -36,6 +36,7 @@ defmodule PostgrexTextExt.MixProject do
     [
       source_url: @source_url,
       source_ref: "v#{@version}",
+      api_reference: false,
       main: "readme",
       extras: ["README.md", "CHANGELOG.md"],
     ]

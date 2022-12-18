@@ -2,7 +2,7 @@
 
 Text extensions for the Postgrex driver.
 
-Documentation: http://hexdocs.pm/postgrex_text_ext/
+Documentation: https://hexdocs.pm/postgrex_text_ext/
 
 ## Installation
 
