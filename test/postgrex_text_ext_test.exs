@@ -15,7 +15,7 @@ defmodule PostgrexTextExtTest do
 
   setup do
     opts = [
-      database: "postgrex_test",
+      database: "postgrex_text_ext_test",
       backoff_type: :stop,
       types: @type_module
     ]
