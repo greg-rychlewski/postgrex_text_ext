@@ -1,6 +1,6 @@
 # PostgrexTextExt
 
-[![Build Status](https://github.com/elixir-ecto/postgrex/workflows/CI/badge.svg)](https://github.com/greg-rychlewski/postgrex_text_ext/actions)
+[![Build Status](https://github.com/greg-rychlewski/postgrex_text_ext/workflows/CI/badge.svg)](https://github.com/greg-rychlewski/postgrex_text_ext/actions)
 
 Text extensions for the Postgrex driver.
 
