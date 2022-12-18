@@ -38,7 +38,7 @@ defmodule PostgrexTextExt.MixProject do
       source_ref: "v#{@version}",
       api_reference: false,
       main: "readme",
-      extras: ["README.md", "CHANGELOG.md"],
+      extras: ["README.md", "CHANGELOG.md"]
     ]
   end
 
@@ -47,8 +47,7 @@ defmodule PostgrexTextExt.MixProject do
       maintainers: ["Greg Rychlewski"],
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => @source_url},
-      files:
-        ~w(.formatter.exs mix.exs README.md CHANGELOG.md lib)
+      files: ~w(.formatter.exs mix.exs README.md CHANGELOG.md lib)
     ]
   end
 end
