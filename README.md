@@ -34,7 +34,7 @@ Postgrex can transmit a data type using either the text or the binary protocol, 
 
 ## Usage
 
-Your application configuration will be used to specify which data types should be transmitted using the text protocol. There are 2 levels of granularity you may use: type name and type output. These correspond to the `typname` and `typoutput` columns in the [pg_type system catalog](https://www.postgresql.org/docs/current/catalog-pg-type.html).
+Your application configuration is used to specify which data types should be transmitted using the text protocol. There are 2 levels of granularity you may use: type name and type output. These correspond to the `typname` and `typoutput` columns in the [pg_type system catalog](https://www.postgresql.org/docs/current/catalog-pg-type.html).
 
 Type name is the most granular level of specification and is unique for each data type. Type output is less granular and groups data types by the conversion function used by PostgreSQL.
 

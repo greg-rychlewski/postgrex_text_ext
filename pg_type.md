@@ -1,3 +1,5 @@
+A list of type names (typname) and type ouputs (typoutput) from the [pg_type system catalog](https://www.postgresql.org/docs/current/catalog-pg-type.html).    
+    
     typname                                   typoutput
     -------                                   ---------
     __pg_foreign_data_wrappers                array_out
