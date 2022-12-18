@@ -36,21 +36,21 @@ Postgrex can transmit a data type using either the text or the binary protocol, 
 
 ## Usage
 
-Your application configuration is used to specify which data types should be transmitted using the text protocol. There are 2 levels of granularity you may use: type name and type output. These correspond to the `typname` and `typoutput` columns in the [pg_type system catalog](https://www.postgresql.org/docs/current/catalog-pg-type.html).
-
-Type name is the most granular level of specification and is unique for each data type. Type output is less granular and groups data types by the conversion function used by PostgreSQL.
-
-For example, an array of booleans has type name `_bool` and an array of UUIDs has type name `_uuid`. However, they both have type output `array_out`. Use type output if you'd like an entire group of data types to use the text protocol. Otherwise, list the type names individually.
-
-A list of type names and outputs is [provided here](pg_type.md). You may also use the `pg_type` system catalog: `SELECT typname, typoutput FROM pg_type;`. 
-
-Example configuration:
+Your application configuration is used to specify which data types should be transmitted using the text protocol:
 
 ```elixir
   config :postgrex_text_ext,
     type_names: ["regconfig", "ltree"],
     type_outputs: ["range_out"]
 ```
+
+There are 2 levels of granularity: type name and type output. These correspond to the `typname` and `typoutput` columns in the [pg_type system catalog](https://www.postgresql.org/docs/current/catalog-pg-type.html).
+
+Type name is the most granular level and is unique for each data type. Type output is less granular and groups data types by the conversion function used by PostgreSQL.
+
+For example, an array of booleans has type name `_bool` and an array of UUIDs has type name `_uuid`. However, they both have type output `array_out`. Use type output if you'd like an entire group of data types to use the text protocol. Otherwise, list the type names individually.
+
+A list of type names and outputs is [provided here](pg_type.md). You may also use the `pg_type` system catalog: `SELECT typname, typoutput FROM pg_type;`. 
 
 Finally, you must define a custom type module, [as requred by Postgrex](https://hexdocs.pm/postgrex/readme.html#extensions), with extension `PostgrexTextExt`:
 
