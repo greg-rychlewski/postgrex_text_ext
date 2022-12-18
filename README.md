@@ -30,12 +30,15 @@ Some reasons you might want to do this:
 
 ## Caution
 
+Postgrex can transmit a data type using either the text or the binary protocol, but not both. Specifying a type in this library will make it so that it is always transmitted using the text protocol in all queries. This may cause unexpected results if you are not careful.
 
 ## Usage
 
-Your application config will be used to specify which data types should be transmitted using the text protocol. There are 2 levels of granularity you may use: type name and type output. These correspond to the `typname` and `typoutput` columns in the [pg_type system catalog](https://www.postgresql.org/docs/current/catalog-pg-type.html).
+Your application configuration will be used to specify which data types should be transmitted using the text protocol. There are 2 levels of granularity you may use: type name and type output. These correspond to the `typname` and `typoutput` columns in the [pg_type system catalog](https://www.postgresql.org/docs/current/catalog-pg-type.html).
 
-Type name is the most granular level of specification and is unique for each data type. Type output is less granular and groups data types by the function PostgreSQL uses for conversion to the text protocol. For example, an array of booleans has type name `_bool` and an array of UUIDs has type name `_uuid`. However, they both have type output `array_out`. Use type output if you'd like an entire group of data types to use the text protocol. Otherewise, list the type names individually.
+Type name is the most granular level of specification and is unique for each data type. Type output is less granular and groups data types by the conversion function used by PostgreSQL.
+
+For example, an array of booleans has type name `_bool` and an array of UUIDs has type name `_uuid`. However, they both have type output `array_out`. Use type output if you'd like an entire group of data types to use the text protocol. Otherwise, list the type names individually.
 
 A list of type names and outputs is [provided here](pg_type.md). You may also use the `pg_type` system catalog: `SELECT typname, typoutput FROM pg_type;`. 
 
@@ -47,9 +50,19 @@ Example configuration:
     type_outputs: ["range_out"]
 ```
 
+Finally, you must define a custom type module, [as requred by Postgrex](https://hexdocs.pm/postgrex/readme.html#extensions), with extension `PostgrexTextExt`:
+
+```elixir
+Postgrex.Types.define(MyApp.PostgrexTypes, [PostgrexTextExt], [])
+```
+
 ## Ecto
 
-Schemas can use the text protocol by simply defining a field's type as `:string`. However, this won't be enough to catch invalid input during casting. For instance, you won't be able to tell if a text array is missing a closing bracket: `{1, 2, 3`. In this case, you won't find out until you receive an error from PostgreSQL. For more intelligent validation, a [custom Ecto Type](https://hexdocs.pm/ecto/Ecto.Type.html) can be created.
+Schemas can use the text protocol by simply defining a field's type as `:string`. However, this won't be enough to catch invalid input during casting. 
+
+For instance, you won't be able to tell if a text array is missing a closing bracket: `{1, 2, 3`. In this case, you won't find out until you receive an error from PostgreSQL.
+
+For more intelligent validation, a [custom Ecto Type](https://hexdocs.pm/ecto/Ecto.Type.html) can be created.
 
 ## License
 
