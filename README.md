@@ -24,7 +24,7 @@ This library allows you to control which data types Postgrex will transmit using
 
 Some reasons you might want to do this:
 
-- It's not easy to obtain the data's binary version. For example, [to_tsvector](https://www.postgresql.org/docs/current/textsearch-controls.html) expects an OID as its first argument. If using the binary protocol, this value will have to be sent as an integer. If using the text protocol, the value can be sent as a string. i.e. `to_tsvector(1, 'some text')` (binary) vs `to_tsvector('english', 'some text')` (text).
+- It's not easy to obtain the data's binary version. For example, [to_tsvector](https://www.postgresql.org/docs/current/textsearch-controls.html) expects an OID as its first argument. If using the binary protocol, this value will have to be sent as an integer. In general, this number can't be known without digging through system catalogs. On the other hand, the text protocol can send this value as a meaningful string. i.e. `to_tsvector(1, 'some text')` (binary) vs `to_tsvector('english', 'some text')` (text).
 
 - You may be using a PostgreSQL extension that doesn't have a binary protocol. For instance, the [ltree](https://www.postgresql.org/docs/current/ltree.html) extension started out only having a text protocol.
 
