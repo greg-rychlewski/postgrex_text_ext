@@ -52,7 +52,7 @@ For example, an array of booleans has type name `_bool` and an array of UUIDs ha
 
 A list of type names and outputs is [provided here](pg_type.md). You may also use the `pg_type` system catalog: `SELECT typname, typoutput FROM pg_type;`. 
 
-Finally, you must define a custom type module, [as requred by Postgrex](https://hexdocs.pm/postgrex/readme.html#extensions), with extension `PostgrexTextExt`:
+Finally, you must define a custom type module, [as required by Postgrex](https://hexdocs.pm/postgrex/readme.html#extensions), with extension `PostgrexTextExt`:
 
 ```elixir
 Postgrex.Types.define(MyApp.PostgrexTypes, [PostgrexTextExt], [])
